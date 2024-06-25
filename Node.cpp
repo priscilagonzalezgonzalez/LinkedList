@@ -1,47 +1,55 @@
 #include <format>
 #include <iostream>
-#include "Student.cpp"
 
 using std::cout;
 using std::format;
+
+template <typename T>
 class Node
 {
 private:
   Node *next; 
-  Student student;
+  T data;
 public:
   Node(Node* node);
-  Node(const Student &s);
+  Node(const T &d);
   ~Node();
 
-  Student& getData();
+  T& getData();
   Node* getNext();
-  void setData(const Student &s);
+  void setData(const T &d);
   void setNext(Node *p);
 };
 
-Node::Node(Node* node): student(node->student), next(node->next){}
+template <typename T>
+Node<T>::Node(Node* node): data(node->data), next(node->next){}
 
-Node::Node(const Student &s) : student(s), next(nullptr) {}
+template <typename T>
+Node<T>::Node(const T &d) : data(d), next(nullptr) {}
 
-Node::~Node(){}
+template <typename T>
+Node<T>::~Node(){}
 
-Student& Node::getData()
+template <typename T>
+T& Node<T>::getData()
 {
-  return this->student;
+  return this->data;
 }
 
-Node* Node::getNext()
+template <typename T>
+Node<T>* Node<T>::getNext()
 {
   return this->next;
 }
 
-void Node::setData(const Student &s)
+template <typename T>
+void Node<T>::setData(const T &d)
 {
-  this->student = s;
+  this->data = d;
 }
 
-void Node::setNext(Node *p)
+template <typename T>
+void Node<T>::setNext(Node *p)
 {
   this->next = p;
 }

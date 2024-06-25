@@ -1,38 +1,42 @@
 #include "Node.cpp"
 
+template <typename T>
 class LinkedList
 {
 private:
-  Node* head;
+  Node<T>* head;
 public:
   LinkedList();
   ~LinkedList();
-  void append(const Student &s);
+  void append(const T &d);
 };
 
-LinkedList::LinkedList()
+template <typename T>
+LinkedList<T>::LinkedList()
 {
   this->head = nullptr;
 }
 
-LinkedList::~LinkedList()
+template <typename T>
+LinkedList<T>::~LinkedList()
 {
-  Node* current = head;
+  Node<T>* current = head;
   while (current != NULL)
   {
-    Node* next = current->getNext();
+    Node<T>* next = current->getNext();
     delete current;
     current = next;
   }
 }
 
-void LinkedList::append(const Student &s)
+template <typename T>
+void LinkedList<T>::append(const T &d)
 {
-  Node* newNode = new Node(s); //Creates object in the heap (dynamic allocation)
+  Node<T>* newNode = new Node(d); //Creates object in the heap (dynamic allocation)
   if (this->head == NULL){
     this->head = newNode;}
   else{
-    Node* current = head;
+    Node<T>* current = head;
     while (current->getNext() != NULL)
     {
       current = current->getNext();
